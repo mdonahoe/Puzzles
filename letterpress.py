@@ -1,5 +1,5 @@
 """
-A letterpress solver
+A letterpress cheater
 
 What is the longest word we can spell using 25 letter tiles?
 

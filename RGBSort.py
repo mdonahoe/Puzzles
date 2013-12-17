@@ -1,3 +1,6 @@
+"""
+Sort a list of colored objects in O(N) time and O(1) extra space
+"""
 import random
 class ColorObj:
     colors = ['R', 'G', 'B']
@@ -17,4 +20,3 @@ a = [ColorObj() for _ in range(20)]
 print 'start:', a
 mattsort(a, colors=ColorObj.colors)
 print '  end:', a
-
