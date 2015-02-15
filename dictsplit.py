@@ -4,21 +4,25 @@ Split a string into a list of valid words
 import sys
 
 words = file('/usr/share/dict/words').read().split('\n')
-words = set(x for x in words if len(x) > 1)
+words = {word for word in words if len(word) > 1}
 words.update(['i', 'a'])
 
-def sentence(x):
-    if x in words:
-        return [x]
-    L = len(x) - 1
-    if L < 1:
-        return []
-    i = 1
-    while i < L:
-        s = sentence(x[i:])
-        if x[:i] in words and s:
-            return [x[:i]] + s
-        i += 1
-    return []
+def create_sentence(letters):
+    if letters in words:
+        return letters
 
-print sentence(sys.argv[1].lower())
+    length = len(letters)
+    if length < 1:
+        return ''
+
+    # Try to form the largest word we can from the front the of letters.
+    while length > 0:
+        sentence = create_sentence(letters[length:])
+        if letters[:length] in words and sentence:
+            return ''.join(letters[:length]) + ' ' + sentence
+        length -= 1
+
+    # We couldn't find anything here.
+    return None
+
+print create_sentence(sys.argv[1].lower())

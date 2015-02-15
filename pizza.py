@@ -10,7 +10,8 @@ Rules:
 """
 
 def pizza(slices):
-    if not slices: return (0,)
+    if not slices:
+        return (0,)
     left = pizza(slices[1:])[0]
     right = pizza(slices[:-1])[0]
     return max((slices[0] - left, 'Left'), (slices[-1] - right, 'Right'))
